@@ -7,7 +7,7 @@ public class RosenbrockDemo {
     void main() {
         ModularSimulatedAnnealing<double[],ContinuousProblem,ContinuousSolution> msa = 
         new ModularSimulatedAnnealing<double[],ContinuousProblem,ContinuousSolution>(
-            new RosenbrockFunction(2),
+            new RosenbrockProblem(2),
             new BasicInitializer(100),
             new BasicPerturbation(),
             new BasicCoolingSchedule(0.99,100),

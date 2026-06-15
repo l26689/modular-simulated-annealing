@@ -1,6 +1,6 @@
 package msa.core;
 
-public interface Solution<X> extends Cloneable {
+public interface Solution<X>{
     X getX();
     double getValue();
 
