@@ -4,9 +4,8 @@ import java.util.Random;
 
 import msa.core.Perturbation;
 import msa.examples.rosenbrock.ContinuousProblem;
-import msa.examples.rosenbrock.ContinuousSolution;
 
-public class BasicPerturbation extends Perturbation<double[],ContinuousProblem,ContinuousSolution> {
+public class BasicPerturbation extends Perturbation<double[],ContinuousProblem> {
 
     private double[] lowerBounds;
     private double[] upperBounds;
@@ -18,9 +17,9 @@ public class BasicPerturbation extends Perturbation<double[],ContinuousProblem,C
     }
     
     @Override
-    protected ContinuousSolution perturb(double temperature, ContinuousSolution s,boolean isAccepted) {
+    protected double[] perturb(double temperature, double[] x,boolean isAccepted) {
         Random random = new Random();
-        double[] newX = s.getX().clone();
+        double[] newX = x.clone();
         
         for(int i = 0; i < newX.length; i++) {
             double delta = (upperBounds[i] - lowerBounds[i]) * 0.1;
@@ -29,6 +28,6 @@ public class BasicPerturbation extends Perturbation<double[],ContinuousProblem,C
             if(newX[i] > upperBounds[i]) newX[i] = upperBounds[i];
         }
         
-        return new ContinuousSolution(newX);
+        return newX;
     }
 }

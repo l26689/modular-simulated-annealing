@@ -2,20 +2,20 @@ package msa.core;
 
 import java.util.Random;
 
-public class ModularSimulatedAnnealing<X,Prob extends Problem<X>,Sol extends Solution<X>> {
-    private Initializer<X,Prob,Sol> initializer;//初始化器
-    private Perturbation<X,Prob,Sol> perturbation;//扰动器
-    private CoolingSchedule<X,Prob,Sol> coolingSchedule;//冷却器
-    private TerminationCondition<X,Prob,Sol> terminationCondition;//终止条件
+public class ModularSimulatedAnnealing<X,Prob extends Problem<X>> {
+    private Initializer<X,Prob> initializer;//初始化器
+    private Perturbation<X,Prob> perturbation;//扰动器
+    private CoolingSchedule<X,Prob> coolingSchedule;//冷却器
+    private TerminationCondition<X,Prob> terminationCondition;//终止条件
     private Random random = new Random();//随机数生成器
     private Prob problem;//优化问题
 
     public ModularSimulatedAnnealing(
         Prob problem ,
-        Initializer<X,Prob,Sol> initializer,
-        Perturbation<X,Prob,Sol> perturbation,
-        CoolingSchedule<X,Prob,Sol> coolingSchedule,
-        TerminationCondition<X,Prob,Sol> terminationCondition){
+        Initializer<X,Prob> initializer,
+        Perturbation<X,Prob> perturbation,
+        CoolingSchedule<X,Prob> coolingSchedule,
+        TerminationCondition<X,Prob> terminationCondition){
             this.problem = problem;
             this.initializer = initializer;
             this.perturbation = perturbation;
@@ -26,39 +26,43 @@ public class ModularSimulatedAnnealing<X,Prob extends Problem<X>,Sol extends Sol
             terminationCondition.init(problem);
         }
 
-    public Sol solve(){
+    public X solve(){
         double temperature= initializer.initialTemperature();
-        Sol currentSolution = initializer.initialSolution();
-        currentSolution.setValue(problem.evaluate(currentSolution.getX()));
+        X currentX = initializer.initialX();
+        double currentValue = problem.evaluate(currentX);
 
-        Sol bestSolution = (Sol)currentSolution.clone();
-        Sol newSolution;
+        X bestX = problem.copyX(currentX);
+        double bestValue = currentValue;
+
+        X newX = problem.copyX(currentX);
+        double newValue = currentValue;
 
         boolean isAccepted = false;
 
-        while (!terminationCondition.check(temperature, currentSolution,isAccepted)) {
+        while (!terminationCondition.check(temperature, currentX,isAccepted)) {
 
-            newSolution = perturbation.perturb(temperature,currentSolution,isAccepted);
+            newX = perturbation.perturb(temperature,currentX,isAccepted);
 
-            newSolution.setValue(problem.evaluate(newSolution.getX()));
+            newValue = problem.evaluate(newX);
 
-            if(newSolution.getValue()<currentSolution.getValue()){
-                currentSolution = newSolution;
+            if(newValue<currentValue){
+                currentX = newX;
                 isAccepted = true;
 
-                if(currentSolution.getValue()<bestSolution.getValue()){
-                    bestSolution = (Sol)currentSolution.clone();
+                if(currentValue<bestValue){
+                    bestX = problem.copyX(currentX);
+                    bestValue = currentValue;
                 }
             }
             else{
-                isAccepted = random.nextDouble()<Math.exp((currentSolution.getValue()-newSolution.getValue())/temperature);
+                isAccepted = random.nextDouble()<Math.exp((currentValue-newValue)/temperature);
                 if(isAccepted){
-                    currentSolution = newSolution;
+                    currentX = newX;
                 }
             }
-            temperature = coolingSchedule.cool(temperature,currentSolution,isAccepted);
+            temperature = coolingSchedule.cool(temperature,currentX,isAccepted);
         }
         
-        return bestSolution;
+        return bestX;
     }
 }

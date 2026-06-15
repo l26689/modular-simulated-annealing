@@ -2,9 +2,8 @@ package msa.components.basiccomponents;
 
 import msa.core.CoolingSchedule;
 import msa.examples.rosenbrock.ContinuousProblem;
-import msa.examples.rosenbrock.ContinuousSolution;
 
-public class BasicCoolingSchedule extends CoolingSchedule<double[],ContinuousProblem,ContinuousSolution> {
+public class BasicCoolingSchedule extends CoolingSchedule<double[],ContinuousProblem> {
     private double coolingRate;
     private int currentIteration;
     private int maxIterations;
@@ -21,7 +20,7 @@ public class BasicCoolingSchedule extends CoolingSchedule<double[],ContinuousPro
     }
     
     @Override
-    public double cool(double temperature, ContinuousSolution s,boolean isAccepted) {
+    public double cool(double temperature, double[] x,boolean isAccepted) {
         currentIteration++;
         if(currentIteration > maxIterations) {
             currentIteration = 0;

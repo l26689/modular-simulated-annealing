@@ -18,4 +18,5 @@ public abstract class ContinuousProblem implements Problem<double[]>{
     public int getDimension() { return lowerBounds.length;}
     public double[] getLowerBounds() { return lowerBounds.clone();}
     public double[] getUpperBounds() { return upperBounds.clone();}
+    public double[] copyX(double[] x) { return x.clone();}
 }

@@ -1,10 +1,10 @@
 package msa.core;
 
-public abstract class Initializer<X,Prob extends Problem<X>,Sol extends Solution<X>> {
+public abstract class Initializer<X,Prob extends Problem<X>> {
     
     protected abstract void init(Prob problem);
     
-    protected abstract Sol initialSolution();
+    protected abstract X initialX();
 
     protected abstract double initialTemperature();
 }

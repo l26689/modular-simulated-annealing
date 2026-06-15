@@ -4,9 +4,8 @@ import java.util.Random;
 
 import msa.core.Initializer;
 import msa.examples.rosenbrock.ContinuousProblem;
-import msa.examples.rosenbrock.ContinuousSolution;
 
-public class BasicInitializer extends Initializer<double[],ContinuousProblem,ContinuousSolution> {
+public class BasicInitializer extends Initializer<double[],ContinuousProblem> {
     private double initialTemp;
     private int dim;
     private double[] lowerBounds;
@@ -24,15 +23,14 @@ public class BasicInitializer extends Initializer<double[],ContinuousProblem,Con
     }
     
     @Override
-    protected ContinuousSolution initialSolution() {
+    protected double[] initialX() {
         double[] x = new double[dim];
         Random random = new Random();
         for(int i = 0; i < dim; i++) {
             double range = upperBounds[i] - lowerBounds[i];
             x[i] = lowerBounds[i] + random.nextDouble() * range;
         }
-        ContinuousSolution solution = new ContinuousSolution(x);
-        return solution;
+        return x;
     }
     
     @Override

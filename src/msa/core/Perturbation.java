@@ -1,8 +1,8 @@
 package msa.core;
 
-public abstract class Perturbation<X,Prob extends Problem<X>,Sol extends Solution<X>> {
+public abstract class Perturbation<X,Prob extends Problem<X>> {
 
     protected abstract void init(Prob problem);
 
-    protected abstract Sol perturb(double temperature,Sol s,boolean isAccepted);
+    protected abstract X perturb(double temperature,X x,boolean isAccepted);
 }
