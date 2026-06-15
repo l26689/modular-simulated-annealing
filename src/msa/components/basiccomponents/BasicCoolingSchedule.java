@@ -21,7 +21,7 @@ public class BasicCoolingSchedule extends CoolingSchedule {
     }
     
     @Override
-    public double cool(double temperature, Solution s) {
+    public double cool(double temperature, Solution s,boolean isAccepted) {
         currentIteration++;
         if(currentIteration > maxIterations) {
             currentIteration = 0;

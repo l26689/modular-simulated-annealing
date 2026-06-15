@@ -18,7 +18,7 @@ public class BasicPerturbation extends Perturbation {
     }
     
     @Override
-    protected Solution perturb(double temperature, Solution s) {
+    protected Solution perturb(double temperature, Solution s,boolean isAccepted) {
         Random random = new Random();
         double[] newX = s.getX().clone();
         

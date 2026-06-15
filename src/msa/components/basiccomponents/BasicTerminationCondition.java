@@ -18,7 +18,7 @@ public class BasicTerminationCondition extends TerminationCondition {
     }
     
     @Override
-    public boolean check(double temperature, Solution s) {
+    public boolean check(double temperature, Solution s,boolean isAccepted) {
         currentIteration++;
         return currentIteration > maxIterations;
     }
