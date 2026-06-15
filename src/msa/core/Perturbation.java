@@ -1,11 +1,8 @@
 package msa.core;
 
-import msa.problem.OptimizationProblem;
-import msa.problem.Solution;
+public abstract class Perturbation<X,Prob extends Problem<X>,Sol extends Solution<X>> {
 
-public abstract class Perturbation {
+    protected abstract void init(Prob problem);
 
-    protected abstract void init(OptimizationProblem problem);
-
-    protected abstract Solution perturb(double temperature,Solution s,boolean isAccepted);
+    protected abstract Sol perturb(double temperature,Sol s,boolean isAccepted);
 }

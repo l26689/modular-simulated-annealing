@@ -1,10 +1,10 @@
 package msa.components.basiccomponents;
 
-import msa.problem.OptimizationProblem;
-import msa.problem.Solution;
 import msa.core.TerminationCondition;
+import msa.examples.rosenbrock.ContinuousProblem;
+import msa.examples.rosenbrock.ContinuousSolution;
 
-public class BasicTerminationCondition extends TerminationCondition {
+public class BasicTerminationCondition extends TerminationCondition<double[],ContinuousProblem,ContinuousSolution>{
     private int maxIterations;
     private int currentIteration;
     
@@ -14,11 +14,11 @@ public class BasicTerminationCondition extends TerminationCondition {
     }
     
     @Override
-    public void init(OptimizationProblem problem) {
+    public void init(ContinuousProblem problem) {
     }
     
     @Override
-    public boolean check(double temperature, Solution s,boolean isAccepted) {
+    public boolean check(double temperature, ContinuousSolution s,boolean isAccepted) {
         currentIteration++;
         return currentIteration > maxIterations;
     }

@@ -2,23 +2,23 @@ package msa.components.basiccomponents;
 
 import java.util.Random;
 
-import msa.problem.OptimizationProblem;
-import msa.problem.Solution;
 import msa.core.Perturbation;
+import msa.examples.rosenbrock.ContinuousProblem;
+import msa.examples.rosenbrock.ContinuousSolution;
 
-public class BasicPerturbation extends Perturbation {
+public class BasicPerturbation extends Perturbation<double[],ContinuousProblem,ContinuousSolution> {
 
     private double[] lowerBounds;
     private double[] upperBounds;
-
+    
     @Override
-    protected void init(OptimizationProblem problem) {
+    protected void init(ContinuousProblem problem) {
         this.lowerBounds = problem.getLowerBounds();
         this.upperBounds = problem.getUpperBounds();
     }
     
     @Override
-    protected Solution perturb(double temperature, Solution s,boolean isAccepted) {
+    protected ContinuousSolution perturb(double temperature, ContinuousSolution s,boolean isAccepted) {
         Random random = new Random();
         double[] newX = s.getX().clone();
         
@@ -29,6 +29,6 @@ public class BasicPerturbation extends Perturbation {
             if(newX[i] > upperBounds[i]) newX[i] = upperBounds[i];
         }
         
-        return new Solution(newX);
+        return new ContinuousSolution(newX);
     }
 }

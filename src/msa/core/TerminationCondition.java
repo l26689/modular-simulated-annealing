@@ -1,11 +1,8 @@
 package msa.core;
 
-import msa.problem.OptimizationProblem;
-import msa.problem.Solution;
+public abstract class TerminationCondition<X,Prob extends Problem<X>,Sol extends Solution<X>> {
 
-public abstract class TerminationCondition {
-
-    protected abstract void init(OptimizationProblem problem);
+    protected abstract void init(Prob problem);
     
-    protected abstract boolean check(double temperature, Solution s,boolean isAccepted);
+    protected abstract boolean check(double temperature, Sol s,boolean isAccepted);
 }

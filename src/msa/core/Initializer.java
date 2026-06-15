@@ -1,13 +1,10 @@
 package msa.core;
 
-import msa.problem.OptimizationProblem;
-import msa.problem.Solution;
-
-public abstract class Initializer {
+public abstract class Initializer<X,Prob extends Problem<X>,Sol extends Solution<X>> {
     
-    protected abstract void init(OptimizationProblem problem);
+    protected abstract void init(Prob problem);
     
-    protected abstract Solution initialSolution();
+    protected abstract Sol initialSolution();
 
     protected abstract double initialTemperature();
 }

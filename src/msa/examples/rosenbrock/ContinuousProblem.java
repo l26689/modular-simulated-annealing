@@ -1,11 +1,12 @@
-package msa.problem;
+package msa.examples.rosenbrock;
 
-// 待求解问题
-public abstract class OptimizationProblem {
+import msa.core.Problem;
+
+public abstract class ContinuousProblem implements Problem<double[]>{
     protected double[] lowerBounds;
     protected double[] upperBounds;
 
-    public OptimizationProblem(double[] lower, double[] upper) {
+    public ContinuousProblem(double[] lower, double[] upper) {
         if (lower.length != upper.length) {
             throw new IllegalArgumentException("边界维度不一致");
         }
