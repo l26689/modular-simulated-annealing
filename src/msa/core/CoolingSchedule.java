@@ -7,5 +7,5 @@ public abstract class CoolingSchedule {
 
     protected abstract void init(OptimizationProblem problem);
 
-    protected abstract double cool(double temperature,Solution s);
+    protected abstract double cool(double temperature,Solution s,boolean isAccepted);
 }

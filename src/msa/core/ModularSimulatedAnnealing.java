@@ -32,24 +32,33 @@ public class ModularSimulatedAnnealing{
         double temperature= initializer.initialTemperature();
         Solution currentSolution = initializer.initialSolution();
         currentSolution.setValue(problem.evaluate(currentSolution.getX()));
+
         Solution bestSolution = currentSolution.clone();
         Solution newSolution;
 
-        while (!terminationCondition.check(temperature, currentSolution)) {
+        boolean isAccepted = false;
 
-            newSolution = perturbation.perturb(temperature,currentSolution);
+        while (!terminationCondition.check(temperature, currentSolution,isAccepted)) {
+
+            newSolution = perturbation.perturb(temperature,currentSolution,isAccepted);
+
             newSolution.setValue(problem.evaluate(newSolution.getX()));
 
             if(newSolution.getValue()<currentSolution.getValue()){
                 currentSolution = newSolution;
+                isAccepted = true;
+
                 if(currentSolution.getValue()<bestSolution.getValue()){
                     bestSolution = currentSolution.clone();
                 }
             }
-            else if(random.nextDouble()<Math.exp((currentSolution.getValue()-newSolution.getValue())/temperature)){
-                currentSolution = newSolution;
+            else{
+                isAccepted = random.nextDouble()<Math.exp((currentSolution.getValue()-newSolution.getValue())/temperature);
+                if(isAccepted){
+                    currentSolution = newSolution;
+                }
             }
-            temperature = coolingSchedule.cool(temperature,currentSolution);
+            temperature = coolingSchedule.cool(temperature,currentSolution,isAccepted);
         }
         
         return bestSolution;

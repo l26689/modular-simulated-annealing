@@ -14,7 +14,7 @@ public abstract class OptimizationProblem {
     }
 
     public abstract double evaluate(double[] x);
-    public int getDimension() { return lowerBounds.length; }
-    public double[] getLowerBounds() { return lowerBounds.clone(); }
-    public double[] getUpperBounds() { return upperBounds.clone(); }
+    public int getDimension() { return lowerBounds.length;}
+    public double[] getLowerBounds() { return lowerBounds.clone();}
+    public double[] getUpperBounds() { return upperBounds.clone();}
 }

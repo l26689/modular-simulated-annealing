@@ -7,5 +7,5 @@ public abstract class Perturbation {
 
     protected abstract void init(OptimizationProblem problem);
 
-    protected abstract Solution perturb(double temperature,Solution s);
+    protected abstract Solution perturb(double temperature,Solution s,boolean isAccepted);
 }
