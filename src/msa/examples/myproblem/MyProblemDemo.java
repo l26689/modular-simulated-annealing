@@ -1,12 +1,12 @@
-package msa.examples.rosenbrock;
+package msa.examples.myproblem;
 
+import msa.components.basiccomponents.*;
 import msa.core.ModularSimulatedAnnealing;
 import msa.examples.ContinuousProblem;
-import msa.components.basiccomponents.*;
 
-public class RosenbrockDemo {
+public class MyProblemDemo {
     void main() {
-        ContinuousProblem problem = new RosenbrockProblem(2);
+        ContinuousProblem problem = new MyProblem(2);
         ModularSimulatedAnnealing<double[],ContinuousProblem> msa = 
         new ModularSimulatedAnnealing<double[],ContinuousProblem>(
             problem,
@@ -18,5 +18,4 @@ public class RosenbrockDemo {
         double[] x = msa.solve();
         System.out.println(problem.evaluate(x));
     }
-    
 }

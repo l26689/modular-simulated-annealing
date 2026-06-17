@@ -1,5 +1,7 @@
 package msa.examples.rosenbrock;
 
+import msa.examples.ContinuousProblem;
+
 // Rosenbrock 函数：经典的非凸函数，又称“香蕉函数”
 // 公式：f(x) = Σ[100*(x_{i+1} - x_i²)² + (1 - x_i)²]
 // 全局最优在 x=(1,1,...,1)，f(x)=0，山谷狭长难以收敛

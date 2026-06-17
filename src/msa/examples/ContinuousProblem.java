@@ -1,4 +1,4 @@
-package msa.examples.rosenbrock;
+package msa.examples;
 
 import msa.core.Problem;
 

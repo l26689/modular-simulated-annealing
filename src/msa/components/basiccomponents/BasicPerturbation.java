@@ -3,7 +3,7 @@ package msa.components.basiccomponents;
 import java.util.Random;
 
 import msa.core.Perturbation;
-import msa.examples.rosenbrock.ContinuousProblem;
+import msa.examples.ContinuousProblem;
 
 public class BasicPerturbation extends Perturbation<double[],ContinuousProblem> {
 

@@ -1,7 +1,7 @@
 package msa.components.basiccomponents;
 
 import msa.core.CoolingSchedule;
-import msa.examples.rosenbrock.ContinuousProblem;
+import msa.examples.ContinuousProblem;
 
 public class BasicCoolingSchedule extends CoolingSchedule<double[],ContinuousProblem> {
     private double coolingRate;

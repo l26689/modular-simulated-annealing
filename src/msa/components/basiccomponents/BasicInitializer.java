@@ -3,7 +3,7 @@ package msa.components.basiccomponents;
 import java.util.Random;
 
 import msa.core.Initializer;
-import msa.examples.rosenbrock.ContinuousProblem;
+import msa.examples.ContinuousProblem;
 
 public class BasicInitializer extends Initializer<double[],ContinuousProblem> {
     private double initialTemp;

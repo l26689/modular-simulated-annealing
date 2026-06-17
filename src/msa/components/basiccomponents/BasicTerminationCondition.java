@@ -1,7 +1,7 @@
 package msa.components.basiccomponents;
 
 import msa.core.TerminationCondition;
-import msa.examples.rosenbrock.ContinuousProblem;
+import msa.examples.ContinuousProblem;
 
 public class BasicTerminationCondition extends TerminationCondition<double[],ContinuousProblem>{
     private int maxIterations;
