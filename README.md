@@ -41,26 +41,43 @@ graph TD
 
 ## 📁 项目结构
 
-msa/
-├── README.md
+```
+MSA/
+├── src/
+│   └── msa/
+│       ├── core/                          # 核心框架
+│       │   ├── ModularSimulatedAnnealing  # 主循环控制器
+│       │   ├── Problem                    # 问题定义接口
+│       │   ├── Initializer                # 初始化组件抽象类
+│       │   ├── Perturbation               # 扰动组件抽象类
+│       │   ├── CoolingSchedule            # 冷却策略抽象类
+│       │   └── TerminationCondition       # 终止条件抽象类
+│       ├── components/
+│       │   └── basiccomponents/           # 内置基础实现
+│       │       ├── BasicInitializer
+│       │       ├── BasicPerturbation
+│       │       ├── BasicCoolingSchedule
+│       │       └── BasicTerminationCondition
+│       └── examples/                      # 示例问题
+│           ├── ContinuousProblem          # 连续问题基类
+│           ├── myproblem/                 # 简单平方和示例
+│           │   ├── MyProblem
+│           │   └── MyProblemDemo
+│           └── rosenbrock/                # Rosenbrock 函数示例
+│               ├── RosenbrockProblem
+│               └── RosenbrockDemo
+├── bin/                                   # 编译产物（.class 文件）
 ├── .gitignore
-└── msa/
-    ├── core/                # 框架核心：抽象接口与算法主控
-    │   ├── Problem.java
-    │   ├── Initializer.java
-    │   ├── Perturbation.java
-    │   ├── CoolingSchedule.java
-    │   ├── TerminationCondition.java
-    │   └── ModularSimulatedAnnealing.java
-    ├── components/          # 可替换的基础实现
-    │   ├── BasicInitializer.java
-    │   ├── BasicPerturbation.java
-    │   ├── BasicCoolingSchedule.java
-    │   └── BasicTerminationCondition.java
-    ├── problem/             # 优化问题示例
-    │   └── RosenbrockProblem.java
-    └── examples/            # 可运行的示例
-        └── RosenbrockDemo.java
+├── LICENSE
+└── README.md
+```
+
+| 模块 | 说明 |
+|------|------|
+| `core/` | 框架核心：主循环 + 四大组件接口契约 |
+| `components/basiccomponents/` | 开箱即用的基础实现，可直接使用或作为自定义参考 |
+| `examples/` | 完整示例，展示如何定义问题并运行优化 |
+| `bin/` | 编译后的字节码，无需手动维护 |
 
 ## 🚀 快速开始
 
