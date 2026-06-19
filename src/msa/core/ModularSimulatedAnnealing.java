@@ -62,6 +62,7 @@ public class ModularSimulatedAnnealing<X,Prob extends Problem<X>> {
             this.perturbation = perturbation;
             this.coolingSchedule = coolingSchedule;
             this.terminationCondition = terminationCondition;
+            initializer.init(problem);
             perturbation.init(problem);
             coolingSchedule.init(problem);
             terminationCondition.init(problem);
